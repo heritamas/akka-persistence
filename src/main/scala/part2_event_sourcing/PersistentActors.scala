@@ -120,9 +120,9 @@ object PersistentActors extends App {
   val system = ActorSystem("PersistentActors")
   val accountant = system.actorOf(Props[Accountant], "simpleAccountant")
 
-  for (i <- 1 to 10) {
-    accountant ! Invoice("The Sofa Company", new Date, i * 1000)
-  }
+//  for (i <- 1 to 10) {
+//    accountant ! Invoice("The Sofa Company", new Date, i * 1000)
+//  }
 
   /*
     Persistence failures
@@ -133,8 +133,8 @@ object PersistentActors extends App {
     *
     * persistAll
     */
-  val newInvoices = for (i <- 1 to 5) yield Invoice("The awesome chairs", new Date, i * 2000)
-  //  accountant ! InvoiceBulk(newInvoices.toList)
+//  val newInvoices = for (i <- 1 to 5) yield Invoice("The awesome chairs", new Date, i * 2000)
+//    accountant ! InvoiceBulk(newInvoices.toList)
 
   /*
     NEVER EVER CALL PERSIST OR PERSISTALL FROM FUTURES.
@@ -146,5 +146,5 @@ object PersistentActors extends App {
     * Best practice: define your own "shutdown" messages
     */
 //  accountant ! PoisonPill
-  accountant ! Shutdown
+//  accountant ! Shutdown
 }
